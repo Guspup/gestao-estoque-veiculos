@@ -1,0 +1,23 @@
+# Java e Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Banco de dados H2
+backend/dados/
+
+# IDEs (VS Code, IntelliJ, Eclipse)
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+bin/
+
+# Sistema Operacional
+Thumbs.db
+Desktop.ini
+.DS_Store

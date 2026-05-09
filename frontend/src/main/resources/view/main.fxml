@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemplo.frontend.controller.MainController">
+    <tabs>
+        <!-- ABA DE ESTOQUE -->
+        <Tab text="Estoque de Veículos" closable="false">
+            <VBox spacing="10">
+                <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                
+                <Label text="SISTEMA DE GESTÃO DE ESTOQUE">
+                    <font><Font name="System Bold" size="20.0" /></font>
+                </Label>
+
+                <!-- Filtros de Busca -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtBuscaMarca" promptText="Marca (Ex: Toyota)" HBox.hgrow="ALWAYS" />
+                    <TextField fx:id="txtBuscaModelo" promptText="Modelo (Ex: Corolla)" HBox.hgrow="ALWAYS" />
+                    <TextField fx:id="txtBuscaAno" promptText="Ano" prefWidth="70" />
+                    <TextField fx:id="txtBuscaPreco" promptText="Preço Máx" prefWidth="100" />
+                    <ComboBox fx:id="cbBuscaStatus" promptText="Status" prefWidth="150" />
+                    <Button onAction="#filtrar" text="Buscar" />
+                    <Button onAction="#limparFiltros" text="Limpar" />
+                </HBox>
+
+                <!-- Tabela de Veículos -->
+                <TableView fx:id="tableVeiculos" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="50" />
+                        <TableColumn fx:id="colMarca" text="Marca" prefWidth="120" />
+                        <TableColumn fx:id="colModelo" text="Modelo" prefWidth="140" />
+                        <TableColumn fx:id="colAno" text="Ano" prefWidth="70" />
+                        <TableColumn fx:id="colCor" text="Cor" prefWidth="100" />
+                        <TableColumn fx:id="colPreco" text="Preço" prefWidth="120" />
+                        <TableColumn fx:id="colKM" text="KM" prefWidth="90" />
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="120" />
+                    </columns>
+                </TableView>
+
+                <!-- Formulário de Detalhes -->
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                    </columnConstraints>
+                    
+                    <Label text="Marca:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="cbMarca" prefWidth="Infinity" promptText="Selecione a Marca" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    
+                    <Label text="Modelo:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="cbModelo" prefWidth="Infinity" promptText="Selecione o Modelo" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <Label text="Ano:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtAno" promptText="Ex: 2023" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Cor:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtCor" promptText="Ex: Prata" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label text="Preço:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtPreco" promptText="Ex: 85000.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="KM:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtKM" promptText="Ex: 0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                    <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="cbStatus" prefWidth="Infinity" promptText="Selecione o Status" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3">
+                        <Button onAction="#limparFormulario" text="Novo / Limpar" />
+                        <Button onAction="#remover" text="Excluir" />
+                        <Button onAction="#salvar" text="Salvar" />
+                    </HBox>
+                </GridPane>
+                
+                <Label text="Sistema de Gestão de Estoque v1.1 | Administrador logado">
+                    <font><Font size="10.0" /></font>
+                </Label>
+            </VBox>
+        </Tab>
+
+        <!-- ABA DE CADASTROS AUXILIARES -->
+        <Tab text="Marcas e Modelos" closable="false">
+            <VBox spacing="20">
+                <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                
+                <VBox spacing="10">
+                    <Label text="Cadastrar Nova Marca">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                    <HBox spacing="10">
+                        <TextField fx:id="txtNovaMarca" promptText="Nome da Marca (Ex: BMW)" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#salvarMarca" text="Adicionar Marca" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label text="Cadastrar Novo Modelo e Veículo">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                    <GridPane hgap="10" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                        </columnConstraints>
+
+                        <Label text="Selecione a Marca:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <ComboBox fx:id="cbMarcaAux" prefWidth="Infinity" promptText="Marca" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        
+                        <Label text="Nome do Modelo:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                        <TextField fx:id="txtNovoModelo" promptText="Ex: X5" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                        
+                        <Label text="Ano:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtNovoAno" promptText="Ano" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                        <Label text="Cor:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtNovaCor" promptText="Cor" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        
+                        <Label text="Kilometragem:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtNovoKM" promptText="KM" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        
+                        <Label text="Preço:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtNovoPreco" promptText="Preço" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        
+                        <Button onAction="#salvarModelo" text="Cadastrar Modelo e Veículo" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="3" />
+                    </GridPane>
+                </VBox>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>

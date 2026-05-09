@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exemplo.frontend.controller.MainController">
+    <tabs>
+        <!-- ABA DE ESTOQUE (CONSULTA, FILTRO, REMOÇÃO E EDIÇÃO) -->
+        <Tab text="Estoque de Veículos" closable="false">
+            <VBox spacing="10">
+                <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                
+                <Label text="Gestão de Estoque">
+                    <font><Font name="System Bold" size="20.0" /></font>
+                </Label>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtBuscaMarca" placeholder="Marca" />
+                    <TextField fx:id="txtBuscaModelo" placeholder="Modelo" />
+                    <ComboBox fx:id="cbBuscaStatus" placeholder="Status" />
+                    <Button onAction="#filtrar" text="Filtrar" />
+                    <Button onAction="#limparFiltros" text="Limpar" />
+                </HBox>
+
+                <TableView fx:id="tableVeiculos" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="40" />
+                        <TableColumn fx:id="colMarca" text="Marca" prefWidth="100" />
+                        <TableColumn fx:id="colModelo" text="Modelo" prefWidth="100" />
+                        <TableColumn fx:id="colAno" text="Ano" prefWidth="60" />
+                        <TableColumn fx:id="colCor" text="Cor" prefWidth="80" />
+                        <TableColumn fx:id="colPreco" text="Preço" prefWidth="90" />
+                        <TableColumn fx:id="colKM" text="KM" prefWidth="70" />
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="100" />
+                    </columns>
+                </TableView>
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Marca:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="cbMarca" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    
+                    <Label text="Modelo:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="cbModelo" prefWidth="150" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <Label text="Ano:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtAno" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Cor:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtCor" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label text="Preço:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtPreco" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="KM:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtKM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                    <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="cbStatus" prefWidth="150" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3">
+                        <Button onAction="#salvar" text="Salvar/Atualizar" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+                        <Button onAction="#remover" text="Remover" style="-fx-background-color: #f44336; -fx-text-fill: white;" />
+                        <Button onAction="#limparFormulario" text="Novo / Limpar" />
+                    </HBox>
+                </GridPane>
+                
+                <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #eee; -fx-padding: 5;">
+                    <Label text="Logado como: Administrador | Sistema de Gestão de Estoque v1.0" style="-fx-font-size: 10px; -fx-text-fill: #666;" />
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- ABA DE CADASTROS AUXILIARES (MARCAS E MODELOS) -->
+        <Tab text="Marcas e Modelos" closable="false">
+            <VBox spacing="20">
+                <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                
+                <VBox spacing="10" style="-fx-border-color: #ccc; -fx-padding: 10;">
+                    <Label text="Cadastrar Nova Marca" style="-fx-font-weight: bold;" />
+                    <HBox spacing="10">
+                        <TextField fx:id="txtNovaMarca" placeholder="Nome da Marca (Ex: Toyota)" />
+                        <Button onAction="#salvarMarca" text="Cadastrar Marca" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="10" style="-fx-border-color: #ccc; -fx-padding: 10;">
+                    <Label text="Cadastrar Novo Modelo" style="-fx-font-weight: bold;" />
+                    <GridPane hgap="10" vgap="10">
+                        <Label text="Marca:" />
+                        <ComboBox fx:id="cbMarcaAux" prefWidth="150" GridPane.columnIndex="1" />
+                        <Label text="Modelo:" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtNovoModelo" placeholder="Nome do Modelo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button onAction="#salvarModelo" text="Cadastrar Modelo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    </GridPane>
+                </VBox>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>
